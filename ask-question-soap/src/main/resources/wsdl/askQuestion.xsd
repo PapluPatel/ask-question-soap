@@ -1,0 +1,44 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://paplu.com/askquestion"
+	xmlns:tns="http://paplu.com/askquestion" elementFormDefault="qualified">
+
+	<xs:element name="askQuestionRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="questions" type="tns:questions" maxOccurs="unbounded"/>
+				<xs:element name="type" type="xs:string" />
+				<xs:element name="quesAns" type="tns:answer" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="askQuestionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="answer" type="tns:answer" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="relatedQuestion" type="tns:questions" maxOccurs="unbounded"/>
+				<xs:element name="status" type="tns:status" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="status">
+		<xs:sequence>
+			<xs:element name="status" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="questions">
+		<xs:sequence>
+			<xs:element name="question" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="answer">
+		<xs:sequence>
+			<xs:element name="question" type="xs:string" />
+			<xs:element name="answer" type="xs:string" />
+			<xs:element name="categoryType" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
